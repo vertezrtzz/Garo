@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-    <h1>vertex garo</h1>
+    <h1>Garo Gallery 🖤</h1>
 
     <div class="upload-area">
         <button class="upload-btn" onclick="uploadImage()">+ Subir imagen</button>
@@ -60,4 +60,62 @@
 
     <div class="gallery" id="gallery">
         <img src="imgs/9f3ceccf70ed52af8ff907c7b1268460.jpg">
-        <img src="im
+        <img src="imgs/94c04bcd76522d430b0dece4a26d5819.jpg">
+    </div>
+
+    <script>
+        const CLOUD_NAME = 'dxmzbw0ju';
+        const UPLOAD_PRESET = 'vertexito';
+
+        // Cargar imágenes guardadas al abrir la página
+        window.onload = () => {
+            const saved = JSON.parse(localStorage.getItem('garoGallery') || '[]');
+            saved.forEach(url => addImage(url));
+        };
+
+        function uploadImage() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.multiple = true;
+            input.onchange = async (e) => {
+                const files = Array.from(e.target.files);
+                for (const file of files) {
+                    const url = await uploadToCloudinary(file);
+                    if (url) {
+                        addImage(url);
+                        saveImage(url);
+                    }
+                }
+            };
+            input.click();
+        }
+
+        async function uploadToCloudinary(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', UPLOAD_PRESET);
+
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await res.json();
+            return data.secure_url;
+        }
+
+        function addImage(url) {
+            const img = document.createElement('img');
+            img.src = url;
+            img.borderRadius = '8px';
+            document.getElementById('gallery').appendChild(img);
+        }
+
+        function saveImage(url) {
+            const saved = JSON.parse(localStorage.getItem('garoGallery') || '[]');
+            saved.push(url);
+            localStorage.setItem('garoGallery', JSON.stringify(saved));
+        }
+    </script>
+</body>
+</html>
