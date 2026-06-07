@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vertex garo</title>
+    <title>Garo Gallery</title>
     <link rel="icon" type="image/png" href="imgs/ac74d3100799ff594a509a0df73afab3.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,6 +17,25 @@
             font-family: sans-serif; 
         }
         h1 { text-align: center; padding: 30px; color: #c084fc; font-size: 2rem; }
+
+        .upload-area {
+            display: flex;
+            justify-content: center;
+            padding: 10px 20px 20px;
+        }
+        .upload-btn {
+            background: #c084fc;
+            color: #0d0d0d;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .upload-btn:hover { background: #a855f7; }
+
         .gallery { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -33,10 +52,12 @@
     </style>
 </head>
 <body>
-    <h1>Garo Gallery 🖤</h1>
-    <div class="gallery">
-        <img src="imgs/9f3ceccf70ed52af8ff907c7b1268460.jpg">
-        <img src="imgs/94c04bcd76522d430b0dece4a26d5819.jpg">
+    <h1>vertex garo</h1>
+
+    <div class="upload-area">
+        <button class="upload-btn" onclick="uploadImage()">+ Subir imagen</button>
     </div>
-</body>
-</html>
+
+    <div class="gallery" id="gallery">
+        <img src="imgs/9f3ceccf70ed52af8ff907c7b1268460.jpg">
+        <img src="im
