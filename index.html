@@ -84,7 +84,7 @@
 
         // Cargar imágenes de Cloudinary
         async function loadImages() {
-            const res = await fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/all.json`);
+            const res = await fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/vertex.json`);
             const data = await res.json();
             if (data.resources) {
                 data.resources.forEach(img => {
